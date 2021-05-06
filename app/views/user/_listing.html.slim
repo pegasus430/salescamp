@@ -1,0 +1,27 @@
+.w-clearfix.previousnext
+  .table-div
+    .table-headers-div
+      .w-clearfix.header-text
+        .text-table-header.email-admin
+          a.header-link href="#" Email
+        .text-table-header.plan
+          a.header-link href="#" Plan
+        .text-table-header.campaigns
+          a.header-link href="#" Campaigns
+        .text-table-header.referred-users
+          a.header-link href="#" Referred Users
+        .text-table-header.original-referrers
+          a.header-link href="#" Original Referrers
+        .text-table-header.total-spent
+          a.header-link href="#" Total Spent
+        .text-table-header.total-payments
+          a.header-link href="#" Total Payments
+        .text-table-header.password-reset
+          a.header-link href="#" Password Reset
+
+      - @companies.each do |company|
+        div.editable.w-clearfix.first-row-div data-id=company.id
+          = render partial: "user/company", locals: {company: company, companies: @companies}
+      
+.w-clearfix.previousnext
+  = will_paginate @companies

@@ -1,0 +1,2 @@
+module ReferredUsersHelper
+end

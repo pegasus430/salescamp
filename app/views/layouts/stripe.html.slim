@@ -1,0 +1,14 @@
+doctype html
+html
+  head
+    title
+      | Salescamp
+    = stylesheet_link_tag    'application', media: 'all'
+    = stripe_javascript_tag
+    = javascript_include_tag 'application'
+    = csrf_meta_tags
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+  body.body-main
+    = render 'layouts/navbar'
+    = yield
+    = render 'layouts/footer'

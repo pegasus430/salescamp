@@ -1,0 +1,26 @@
+== content_for :title do
+  | Select campaign type
+
+== content_for :titleaux do
+  | Choose the most appropriate campaign type for your business - you can't change this.
+
+.w-section.campaign-type-section
+  .w-row
+    .w-col.w-col-6
+      .campaign-type-div
+        = image_tag 'rocket-blue.png', width: 50, class: 'campaign-icon'
+        h4.campaign-heading Pre-Launch Campaign
+        div
+          p.campaign-paragraph This code snippet will give you a subscribe form to integrate into your website. This is perfect for prelaunch campaigns, landing pages and growing a subscriber list.<br/><br/>
+          
+          span.coming_soon_txt COMING SOON<br/><br/>
+        / = link_to 'Select Campaign Type', step_two_new_campaign_path(type: 'pre'), class: 'w-button select-button'
+          
+    .w-col.w-col-6
+      .campaign-type-div
+        = image_tag 'nav-icon-blue.png', width: 50, class: 'campaign-icon'
+        h4.campaign-heading Established Website Campaign
+        div
+          p.campaign-paragraph This campaign type will provide your existing website with a referral overlay to enable your users to begin referring their contacts, simply by sharing their referral link.
+        = link_to 'Select Campaign Type', step_two_new_campaign_path(type: 'established'), class: 'w-button select-button'
+

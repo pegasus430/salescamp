@@ -1,0 +1,69 @@
+table.campaign-table
+    thead
+      tr
+        th EMAIL
+        th JOIN DATE
+        th IP ADDRESS
+        th REFERRALS
+        th REWARDS EARNED
+        th Action
+    tbody
+      -@campaign_info.each do |user|
+        tr class = "pending_reward_#{user.id}"
+          td =user.email
+          td =user.created_at.strftime('%d %b %Y')
+          td =user.ip_address
+          td =user.referrals
+          td
+            - c = @campaign.milestones.select{|m| user.can_be_awarded(m)}.count
+            - if c == 0
+              | #{user.referrals} (0)
+            - else
+              | #{user.referrals}
+              strong data-new-link="true" = " (#{c-user.fullfilled} pending)"
+          td
+            - if c != 0
+              / = check_box_tag 'referred_user[]', user.id, false, class: 'smart-listing-checkbox'
+            a.delete_campaign_referrer href = '#' value = '#{user.id}'
+              =image_tag('delete-16.png')
+
+= will_paginate @campaign_info, previous_label: h("Previous"), next_label: h("Next")
+
+javascript:
+  $( document ).ready(function() {
+    $('.delete_campaign_referrer').click(function (e) {
+      if (confirm('Are you sure you want to delete this Email?')) {
+        var items = [$(this).attr('value')]; 
+        $.ajax({
+          method: 'POST',
+          url: "#{destroy_multiple_campaign_referred_users_path(campaign_id: @campaign.id)}",
+          data: { ids: items }
+        })
+        .done(function(msg) {
+          console.log('done', msg)
+        })
+        .fail(function(msg) {
+          console.log('fail', msg)
+        })
+      }
+    })
+
+    $('#fulfilled-multiple').click(function (e) {
+        e.preventDefault()
+        var items = $('.smart-listing-checkbox:checked').map(function () {
+          return this.value;
+        }).get();
+
+        $.ajax({
+          method: 'POST',
+          url: "#{fullfilled_rewards_campaign_path(campaign_id: @campaign.id)}",
+          data: { ids: items }
+        })
+        .done(function(msg) {
+          console.log('done', msg)
+        })
+        .fail(function(msg) {
+          console.log('fail', msg)
+        })
+      })
+  });

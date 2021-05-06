@@ -1,0 +1,42 @@
+div.pending_users_list
+  table.pending-table
+    thead
+      tr
+        th EMAIL
+        th TOTAL REFERRALS
+        th PENDING REWARDS
+    tbody
+      -@pending_rewards_list.each do |user|
+        tr class = "pending_reward_#{user.id}"
+          td =user.email
+          td =user.referrals
+          td
+            - c = @campaign.milestones.select{|m| user.can_be_awarded(m)}.count
+            -@campaign.milestones.each_with_index do |campaign,index|
+              -if index <= (c+user.fullfilled-1) && index >= user.fullfilled
+                span = " #{campaign.caption}"
+                -if index == user.fullfilled
+                  a.w-button.reward-button.fulfilled#fulfilled-campaign href="#" value="#{user.id}" Award
+                span  |
+
+javascript:
+
+  $('#fulfilled-campaign').click(function (e) {
+      e.preventDefault()
+
+      var items = $(this).attr('value');
+      $.ajax({
+        method: 'POST',
+        url: "#{fullfilled_rewards_campaign_path(campaign_id: @campaign.id)}",
+        data: { ids: [items] }
+      })
+      .done(function(msg) {
+        console.log('done', msg);
+        setTimeout(function() {
+          location.reload();
+        }, 10);
+      })
+      .fail(function(msg) {
+        console.log('fail', msg)
+      })
+    })

@@ -1,0 +1,50 @@
+== content_for :title do
+  | Upgrade Plans
+  
+.w-section.pricing-section.inner
+  .page-title-text.all-stats.plan-type You're currently on the #{@plan_name} Plan
+  .description-plan-type Upgrade your plan to increase your referral or list size limits. Your plan will upgrade automatically if you surpass the limits of your current plan. Alternatively, you may downgrade your plan if you prefer (unless you have already passed the plan's threshold).
+  .w-row
+    - @plans.each do |plan|
+      -features = get_features(plan)
+      .w-col.w-col-3.w-col-medium-6.pricing-column
+        .pricing-div
+          .plan-name = plan.name
+          .price-text
+            | $
+            = (plan.amount/100)
+            span.month-text 
+              | /month
+          .list-ref-size.top
+            strong.bold-amount-text data-new-link="true"  Monthly referrals:
+            = " #{features[1]}"
+          .list-ref-size
+            strong.bold-amount-text data-new-link="true"  Total list size:
+            |  #{features[2]}*
+          - if @user.subscription.nil?
+            = form_tag('/subscription_checkout', {method: :post, plan: plan}) do
+              input type="hidden" name="plan_id" value=plan.id
+              script { src = "https://checkout.stripe.com/checkout.js"
+                       class = "stripe-button"
+                       data-key      = "#{Rails.configuration.stripe[:publishable_key]}"
+                       data-amount   = (plan.id)
+                       data-email    = @user.email
+                       data-currency = plan.id }
+          - else 
+            - if plan.id == @user.subscription.plan_id.parameterize.underscore.to_sym
+              a.w-button.select-btn href="#"  Current Plan
+            - else 
+              = form_tag('/subscription_checkout', method: :post, plan: plan, :onsubmit => "return confirm('Are you sure you would like to upgrade your plan?');" ) do
+                input type="hidden" name="plan_id" value=plan.id 
+                input type="submit" value="Select Plan" class='w-button select-btn' style='width: 100%'
+  .description-pricing-text.top-one
+    strong.bold-amount-text data-new-link="true"  Monthly referrals = 
+    |  Number of people who have joined your website using a referral link. &nbsp;
+    strong.bold-amount-text data-new-link="true"  Total list size = 
+    |  Number of users who have entered their email and joined your referral campaign (emails captured). *Whichever comes first.
+  - unless @user.subscription.nil?
+    a.cancel-plan href="#{subscription_cancel_path}"  Cancel Plan
+
+
+script async="" data-salescamp-campaign="16:1" data-salescamp-campaign-color="#1a67d4" src="//salescamp.io/salescamp.js" type="text/javascript" 
+

@@ -1,0 +1,20 @@
+.w-section.w-clearfix.referral-modal style='display:block'
+  a#close-modal.w-inline-block.close-referral-overlay href=('#')
+    | +
+  .w-container.referral-container
+    = render 'referral_div_window', locals: {referred_user: @referred_user, result: @result}
+
+
+javascript:
+  window.onload = function () {
+    function closeModal() {
+      var msg = {
+        type: "closeModal"
+      }
+      top.postMessage(JSON.stringify(msg), "*");
+    }
+
+    document.getElementById("close-modal").onclick = (function() {
+      closeModal();
+    })
+  };

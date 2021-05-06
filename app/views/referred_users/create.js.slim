@@ -1,0 +1,10 @@
+- if @result
+  | var $form = $('#new_referred_user');
+  | $form.siblings('.w-form-fail').css({'display': 'none'});
+  | $form.parent().after("
+  = j render 'referred_users/link', referred_user: @referred_user, result: @result
+  | ");
+  | $form.parent().remove();
+- else
+  | var $form = $('#new_referred_user');
+  | $form.siblings('.w-form-fail').css({'display': 'block'});

@@ -1,0 +1,253 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require jquery.minicolors
+ *= require font-awesome
+ *= require toastr
+ *= require_tree .
+ *= require_self
+ */
+ 
+@import "campaigns";
+
+.flash-container {
+    display: none;
+    position: fixed;
+    top: 70px;
+    right: 5%;
+    z-index: 100;
+}
+
+.flash {
+    display: block;
+    padding: 10px;
+    margin: 10px auto;
+    max-width: 400px;
+
+    border-radius: 10px;
+    border: 1px solid;
+    background-color: white;
+    color: #555;
+    text-decoration: none;
+}
+
+.flash span {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.flash .close-flash {
+    float: right;
+    background-color: transparent;
+}
+
+.alert {
+    background-color: #fdd;
+    border-color: #f77;
+}
+
+.success {
+    background-color: #dfd;
+    border-color: #7f7;
+}
+
+.warn {
+    background-color: #ffc;
+    border-color: #dd3;
+}
+
+.notice {
+    background-color: #dff;
+    border-color: #7af;
+}
+
+.live-preview-container {
+    border: 1px solid;
+    border-color: #E3E3E3;
+    box-shadow: 0px 4px 0px 0px #70818a,0px -4px 0px 0px #70818a;
+    margin-top: 15px;
+}
+
+#live-preview {
+    max-width: 940px;
+    width: 940px;
+    transform-origin: top left;
+}
+.modal-title-2{
+    padding: 5px 5px 5px 5px;
+    font-family: Proximanova, sans-serif;
+    color: #3db36c;
+    font-size: 24px;
+    line-height: 36px;
+    text-align: center
+}
+
+
+
+
+/* Css by NP Techsols Pradeep */
+
+.account-settings.change-password {
+    text-align: center;
+}
+.account-settings {
+    margin-top: -10px;
+    margin-bottom: 70px;
+    padding-right: 50px;
+    padding-left: 50px;
+}
+
+.account-form-div {
+    display: block;
+    padding: 35px 30px;
+    border-radius: 2px;
+    background-color: #fff;
+    box-shadow: 0 1px 3px 0 rgba(50, 75, 99, .15);
+}
+
+.account-settings .w-col{
+    padding-left: 12%;
+}
+
+.ip_block{
+    padding-top: 3%;
+    color: red;
+}
+
+input#steps_campaign_url {
+    width: 79%;
+}
+
+.preview-block{
+    border: 1px solid;
+}
+
+.preview-block:hover{
+    color: white !important;
+}
+
+.reward-div-last{
+    float: right;
+    margin-right: 12.5%;
+}
+
+.coming_soon_txt{
+    font-family: Proximanova, sans-serif;
+    color: #12d5cd;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+
+/* ------------------------------------------------------------
+ x.x Progress Indicator
+------------------------------------------------------------ */
+.progress-indicator {
+  list-style: none;
+  display: table;
+  font-family: Proximanova, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0 auto;
+  padding: 0 0 20px 0;
+  table-layout: fixed;
+  width: 100%;
+}
+
+.progress-indicator > li {
+  display: table-cell;
+  position: relative;
+  text-align: center;
+}
+
+.progress-indicator > li span {
+  color: #485158;
+  display: block;
+  font-family: Proximanova, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  height: 100%;
+  left: 0;
+  padding: 0 5px;
+  position: absolute;
+  top: 110%;
+  width: 100%;
+}
+
+.progress-indicator > li::before {
+  background-color: #e6e6e6;
+  border-radius: 200px;
+  color: #99a4a5;
+  content: attr(data-step);
+  display: inline-block;
+  line-height: 14px;
+  font-size: 14px;
+  margin: 0 auto 0.25em;
+  padding: 6px 9px;
+  position: relative;
+  z-index: 1000;
+}
+
+.progress-indicator > li::after {
+  background-color: #e2e9ea;
+  content: '';
+  display: block;
+  height: 3px;
+  left: 50%;
+  margin-left: 1.5em\9;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  z-index: 0;
+
+  -webkit-transform: translateY(-100%);
+      -ms-transform: translateY(-100%);
+          transform: translateY(-100%);
+}
+
+.progress-indicator > li:last-child:after { display: none; }
+.progress-indicator > li.is-complete { color: #1779ba; }
+
+.progress-indicator > li.is-complete::before {
+  color: #fff;
+  background-color: #1777f1;
+}
+
+@media screen and (max-width:480px) {
+  .progress-indicator { display: none; }
+}
+
+
+.pagination a {
+  text-decoration: none;
+  color: #1c6cd5;
+  padding: 8px 10px;
+}
+
+span.page.current {
+  background-color: #617b86;
+  color: #fff;
+  padding: 2px 6px;
+}
+
+.pending-table, .fullfilled-table{
+  width: 100%;
+}
+
+
+.campaign-table{
+  width: 100%;
+}
+
+.stripe-button-el{
+  margin: 0 18%;
+}

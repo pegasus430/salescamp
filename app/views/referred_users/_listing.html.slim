@@ -1,0 +1,22 @@
+.w-clearfix.previousnext
+  .table-div
+    .table-headers-div
+      .w-clearfix.header-text
+        .text-table-header.email
+          a.header-link href="#"= smart_listing.sortable "Email", "email"
+        / .text-table-header.joindate
+        /   a.header-link href="#"= smart_listing.sortable "Join Date", "created_at"
+        .text-table-header.ip
+          a.header-link href="#"= smart_listing.sortable "IP Address", "ip_address"
+        / .text-table-header.referrals
+        /   a.header-link href="#"= smart_listing.sortable "Referrals", "referrals", sort_dirs: ["desc", "asc"]
+        .text-table-header.rewards-earned
+          a.header-link href="#"  NUMBER OF REWARDS EARNED ALL TIME
+        .text-table-header.action
+          a.header-link.action href="#"  ACTION
+      - smart_listing.collection.limit(@limit).each do |user|
+        div.editable.w-clearfix.first-row-div data-id=user.id
+          = smart_listing.render partial: "campaigns/referred_user", locals: {user: user, campaign: @campaign}
+      
+.w-clearfix.previousnext
+  = smart_listing.paginate

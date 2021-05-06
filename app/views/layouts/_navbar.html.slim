@@ -1,0 +1,93 @@
+- is_hero ||= false
+- unless user_signed_in?
+  = render 'layouts/register'
+  = render 'layouts/login'
+
+- home_path = user_signed_in? ? campaigns_path : root_path
+
+div class=(content_for?(:head) ? 'w-section hero-section home homehead' : 'w-section header')
+  .w-nav.inner-nav data={collapse: 'medium', animation: 'default', duration: 400}
+    = link_to home_path, class: 'w-nav-brand brand-box'
+      = image_tag 'logo-img.png', width: 18, class: 'logo-img'
+      .logo-text Salescamp
+    .w-nav-button.menu-button
+      .w-icon-nav-menu
+    nav.w-nav-menu.nav-menu role='navigation'
+      - if user_signed_in?
+        = link_to step_one_new_campaign_path, class: 'w-button button'
+          | + Create a Campaign
+        = link_to campaigns_path, class: 'w-nav-link nav-link'
+          | ALL CAMPAIGNS
+        = link_to 'frequently-asked-questions.html', class: 'w-nav-link nav-link'
+          | faqs
+        = link_to contact_us_path, class: 'w-nav-link nav-link'
+          | Contact
+        .w-dropdown.user-dropdown data={delay: 0}
+          .w-dropdown-toggle
+            .email-style =current_user.email
+            .w-icon-dropdown-toggle.icon-style
+          nav.w-dropdown-list.dropdown-list
+            = link_to 'Account Settings', edit_user_registration_path, class: 'w-dropdown-link dropdown-link'
+            = link_to step_one_new_campaign_path, class: 'w-dropdown-link dropdown-link'
+              | + Create Campaign
+            = link_to 'Upgrade Account', settings_path, class: 'w-dropdown-link dropdown-link'
+            = link_to "Logout", destroy_user_session_path, method: :delete, class: 'w-dropdown-link dropdown-link'
+      - else
+        = link_to "HOW IT WORKS", root_path(anchor: 'howitworks'), class: 'w-nav-link nav-link'
+        = link_to "PRICING", root_path(anchor: 'pricing'), class: 'w-nav-link nav-link'
+        = link_to "FAQs", 'frequently-asked-questions.html', class: 'w-nav-link nav-link'
+        /a.w-nav-link.nav-link href="contact.html"  CONTACT
+        a.w-nav-link.nav-link data-ix="open-login-modal" href="#"  LOGIN
+        a.w-button.register-button data-ix="open-register-modal" href="#"  Register
+  = yield :head
+  .w-nav-overlay data-wf-ignore="" 
+  - unless content_for?(:head)
+    - if is_hero
+      .w-container.container
+        h1.heading = yield :title
+        .sub-head = yield :titleaux
+    - else
+      .title-button-div
+        .w-row
+          .w-col.w-col-7.head-section-column.left
+            .page-title-text 
+              = yield :title
+            = yield :titleaux
+          - if user_signed_in?
+            .w-col.w-col-5.w-clearfix.head-section-column.right.camp-rep
+              = link_to 'Upgrade', settings_path, class: 'w-button upgrade-button'
+              .current-plan-text
+                strong data-new-link="true"  Current Plan:
+                - if current_user.subscription
+                  - plan = current_user.subscription.plan_id.parameterize.underscore.to_sym
+                  | &nbsp
+                  - if plan == :basic
+                    = Stripe::Plans::BASIC.name
+                  - elsif plan == :advanced
+                    = Stripe::Plans::ADVANCED.name
+                  - elsif plan == :professional
+                    = Stripe::Plans::PROFESSIONAL.name
+                  - elsif plan == :business
+                    = Stripe::Plans::BUSINESS.name
+                  | &nbsp
+                - elsif current_user.subscription.nil? && (((Time.now - current_user.created_at)/86400) < 8)
+                  | &nbsp Free - #{(8 - ((Time.now - current_user.created_at)/86400)).to_i } days remaining
+                - else
+                  | &nbsp Account Paused
+                
+/div
+  li
+    = link_to "Home", root_path
+  - if user_signed_in?
+    -unless current_user.admin?
+      li
+        = link_to "Add Campaign", step_one_new_campaign_path
+      li
+        = link_to "Settings", settings_path
+    li
+      = link_to "Logout", destroy_user_session_path, method: :delete
+  - else
+    li
+      = link_to "Login", new_user_session_path
+    li
+      = link_to "Register", new_user_registration_path

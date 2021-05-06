@@ -1,0 +1,6 @@
+.flash-container
+  -flash.each do |name, msg|
+      a.flash class="#{name}" href="#"
+        span
+          = name + ": "
+        = msg

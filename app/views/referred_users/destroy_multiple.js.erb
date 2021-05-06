@@ -1,0 +1,7 @@
+<% @referred_users.each do |r| %>
+  <%= smart_listing_item :referred_users, :remove, r %>
+<% end %>
+$('.pending_reward_<%=@referred_users.first.id%>').remove();
+$('.fullfilled_users_list_<%=@referred_users.first.id%>').remove();
+$('.fullfilled_users_info').html(' | Fulfilled rewards (<%= @fullfilled_rewards %>)');
+$('.pending-rewards-link.pending_users').html('Pending rewards (<%= @pending_rewards_count %>) ');

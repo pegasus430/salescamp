@@ -1,0 +1,50 @@
+== content_for :title do
+  | Account Settings
+
+  /= resource_name.to_s.humanize
+
+.w-section.account-settings.change-password
+  .w-row
+    = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'w-clearfix w-col w-col-10 w-col-stack', method: :put }) do |f|
+      = devise_error_messages!
+      .account-form-div
+        .w-form.form-wrap
+          
+          = f.label :email, class: 'form-label'
+          = f.email_field :email, autofocus: true, class: 'w-input form-style'
+
+          - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+            div
+              | Currently waiting confirmation for: 
+              = resource.unconfirmed_email
+
+
+        
+          = f.label :password, 'Change Password', class: 'form-label'
+          = f.password_field :password, autocomplete: "off", class: 'w-input form-style'
+        
+
+        
+          = f.label :password_confirmation, 'Confirm New Password', class: 'form-label'
+          = f.password_field :password_confirmation, autocomplete: "off", class: 'w-input form-style'
+        
+
+        
+          = f.label :current_password, 'Existing Password (you must enter your current password to make changes)', class: 'form-label'
+          = f.password_field :current_password, autocomplete: "off", class: 'w-input form-style'
+          
+
+          .actions
+            = f.submit "Update", class: 'w-button'
+
+
+
+/h3
+/  | Cancel my account
+/p
+/  | Unhappy? 
+/  = button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete
+/= link_to "Back", :back
+
+
+script async="" data-salescamp-campaign="16:1" data-salescamp-campaign-color="#1a67d4" src="//salescamp.io/salescamp.js" type="text/javascript" 

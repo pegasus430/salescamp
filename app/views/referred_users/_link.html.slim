@@ -1,0 +1,59 @@
+.w-clearfix.copy-link-div
+  .referral-link-div
+    | #{@referred_user.campaign.url}/?salescamp=#{@referred_user.token}
+  a.w-button.copy-link-btn href="#" data-clipboard-text="#{@referred_user.referral_url}" style="background-color:#{@referred_user.campaign.color}"
+    | Copy Link
+.share-button-div
+  
+  a.w-inline-block.share-button.facebook href=@referred_user.facebook_share_url
+    = image_tag 'facebook-icon_1.png', class: 'share-icon', width: 12
+    .share-text Share on Facebook
+  
+  a.w-inline-block.share-button.twitter href=@referred_user.twitter_share_url  id="twitter-button" target="_blank"
+    = image_tag 'twitter-icon_1.png', class: 'share-icon', width: 12
+    .share-text Share on Twitter
+  
+  a.w-inline-block.share-button.google-plus href="#" id="google-share"
+    = image_tag 'gplus-icon.png', class: 'share-icon', width: 12
+    .share-text Share on Google+
+  
+  a.w-inline-block.share-button.email href="mailto:?to=&body=Hey! Sign up to this awesome site here: #{@referred_user.referral_url}&subject=Check this site out!" target="_blank"
+    = image_tag 'email-icon.png', class: 'share-icon', width: 12
+    .share-text Share via Email
+javascript:
+  var clipboard = new Clipboard('.copy-link-btn');
+  clipboard.on('success', function(e) {
+    toastr.info('Copied');
+  });
+  var msg = {
+    type: "saveItem",
+    data: {
+      id: "#{@referred_user.id}"
+    }
+  }
+  top.postMessage(JSON.stringify(msg), "*");
+  var options = {
+    contenturl: '#{@referred_user.referral_url}',
+    contentdeeplinkid: '/pages',
+    clientid: '1035427041781-6pr1e2v8v8grm3q2dk9bbl6p1fjqc8t9.apps.googleusercontent.com',
+    cookiepolicy: 'single_host_origin',
+    prefilltext: '#{@referred_user.referral_url}',
+    calltoactionlabel: 'JOIN',
+    calltoactionurl: '#{@referred_user.referral_url}'
+  };
+  // Call the render method when appropriate within your app to display
+  // the button.
+  if(gapi){
+    gapi.interactivepost.render('google-share', options);
+  }
+  function googleplusCallback(){
+    gapi.interactivepost.render('google-share', options);
+  }
+
+  document.getElementsByClassName('facebook')[0].onclick = function() {
+    FB.ui({
+      method: 'share',
+      display: 'popup',
+      href: "#{@referred_user.campaign.url}/?salescamp=#{@referred_user.token}",
+    }, function(response){});
+  }

@@ -1,0 +1,23 @@
+.w-section.signup-overlay
+  .w-container
+    .w-clearfix.modal-window
+      a.close-modal data-ix="close-register-modal" href="#"  +
+      .modal-title Register
+      .modal-subhead
+        | Already a member?&nbsp;
+        a.register-link data-ix="switch-modal-to-login" href="#" Login here
+      .w-form.signup-form-wrapper
+        = form_for(:user, url: registration_path(:user)) do |f|
+          = f.label :email, class: 'form-label'
+          = f.email_field :email, class: 'w-input form-style'
+          = f.label :password, class: 'form-label'
+          = f.password_field :password, class: 'w-input form-style'
+          = f.label :password_confirmation, class: 'form-label'
+          = f.password_field :password_confirmation, autocomplete: "off", class: 'w-input form-style'
+          .w-checkbox.w-clearfix
+            = f.check_box :remember_me, class: 'w-checkbox-input w-clearfix checkbox-style'
+            = f.label :remember_me, class: 'w-form-label remember-me-text'
+          = f.submit 'REGISTER', class: 'w-button login-btn'
+          .legal-agreement
+            | By registering, you agree to our 
+            a.terms-link href="/terms" Terms of Use

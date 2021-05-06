@@ -1,0 +1,24 @@
+.email-div
+  .email-table= user.email
+/ .email-div.join-date
+/   div= user.created_at.strftime('%d %b %Y')
+.email-div.ipaddress
+  div= user.ip_address
+/ .email-div.referrals
+/   div= user.referrals
+
+.email-div.rewards-earned
+  div
+
+    - c = campaign.milestones.select{|m| user.can_be_awarded(m)}.count
+    - if c == 0
+      | #{user.referrals} (0)
+    - else
+      | #{user.referrals}
+      strong data-new-link="true" = " (#{c} pending)"
+.email-div.action
+  div
+    a.delete_campaign_referrer href = '#' value = '#{user.id}'
+      =image_tag('delete-16.png')
+    - if c != 0
+      = check_box_tag 'referred_user[]', user.id, false, class: 'smart-listing-checkbox'

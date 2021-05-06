@@ -1,0 +1,21 @@
+// Place all the styles related to the referred_users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.confirmation {
+  background-color: transparent;
+}
+
+.referral-container--loading {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.referral-count--loading {
+  margin: 0 !important;
+  color: white !important;
+}

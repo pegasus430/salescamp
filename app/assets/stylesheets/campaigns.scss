@@ -1,0 +1,191 @@
+// Place all the styles related to the campaigns controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.minicolors-theme-default.minicolors {
+  width: auto;
+  display: block;
+}
+
+.minicolors-theme-default .minicolors-input {
+  height: 46px;
+  width: 40%;
+  padding-left: 12px;
+}
+
+.minicolors-swatch {
+  opacity: 0 !important;
+}
+
+.minicolors-position-bottom .minicolors-panel{
+  top: 46px;
+}
+
+.holding-div {
+  margin: 0 245px;
+}
+.basic-info-div{
+  .dropdown-referral-number{
+    width: 20%;
+    margin-left: 0;
+  }
+  .form-style.reward{
+    width: 78%;
+    margin-left: 10px;
+  }
+}
+
+.create-campaign-div{
+  .form-style.reward{
+    width: 63%;
+  }
+  .dropdown-referral-number{
+    width: 30.7%;
+  }
+  .remove-referral{
+    height: 46px;
+    padding-top: 14px;
+    margin-left: 10px;
+    float: left;
+  }
+}
+
+.destroy-campaign {
+    margin-top: 20px;
+    margin-left: 6px;
+    padding-right: 25px;
+    padding-left: 25px;
+    float: right;
+    border-radius: 200px;
+    border: 1px solid #ed3939;
+    background-color: #ed3939;
+    font-family: Proximanova, sans-serif;
+    color: #fff;
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: 400;
+    text-align: center;
+}
+
+.pending_users_list, .fullfilled_users_list{
+  display: none;
+}
+
+.pending-table, .fullfilled-table, .campaign-table {
+    background-color: #FFF;
+    border: solid 1px #DDEEEE;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font: normal 13px Arial, sans-serif;
+    margin-top: 30px;
+}
+.pending-table thead th, .fullfilled-table thead th, .campaign-table thead th {
+    border-bottom: solid 1px #DDEEEE;
+    color: #647688;
+    padding: 20px 60px;
+    text-align: center;
+    text-shadow: 1px 1px 1px #fff;
+    font-weight: 500;
+    font-size: 13px;
+}
+.pending-table tbody td, .fullfilled-table tbody td, .campaign-table tbody td {
+    color: #647688;
+    padding: 20px;
+    text-align: center;
+    text-shadow: 1px 1px 1px #fff;
+}
+
+.fullfilled-table thead th{
+  padding: 20px 120px;
+}
+
+.campaign-table thead th{
+  // padding: 20px 80px;
+}
+
+.delete_campaign_referrer{
+  // float: right;
+  // margin-right: 5%;
+}
+
+.smart-listing-checkbox{
+  margin-right: 25%;
+}
+
+.reward-button{
+  margin-left: 5px;
+  padding: 3px 6px;
+  clear: none;
+  border: 1px solid #1c6cd5;
+  border-radius: 200px;
+  background-color: transparent;
+  color: #1c6cd5;
+  font-size: 12px;
+  line-height: 12px;
+}
+
+// campaign information pagination 
+
+
+.pagination {
+  margin: 20px auto;
+  width: 20%;
+  cursor: default;
+  height: 22px;
+  a, span, em {
+    padding: 0.2em 0.5em !important;
+    display: block;
+    float: left;
+    margin-right: 1px;
+  }
+  .disabled {
+    display: none;
+  }
+
+  .next_page{
+    // float: right;
+  }
+  .current {
+    font-style: normal;
+    font-weight: bold;
+    background: #2e6ab1;
+    color: white;
+    border: 1px solid #2e6ab1;
+  }
+  a {
+    text-decoration: none;
+    color: #105cb6;
+    border: 1px solid #9aafe5;
+    &:hover, &:focus {
+      color: #000033;
+      border-color: #000033;
+    }
+  }
+  .page_info {
+    background: #2e6ab1;
+    color: white;
+    padding: 0.4em 0.6em;
+    width: 22em;
+    margin-bottom: 0.3em;
+    text-align: center;
+    b {
+      color: #000033;
+      background: #2e6ab1 + 60;
+      padding: 0.1em 0.25em;
+    }
+  }
+
+}
+
+a.delete_campaign_referrer {
+    float: right;
+    margin-right: 28px;
+}
+
+input.smart-listing-checkbox {
+    float: left;
+    margin-left: 28px;
+    margin-top: 5px;
+}
+
+    

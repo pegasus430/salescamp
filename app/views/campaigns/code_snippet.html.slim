@@ -1,0 +1,48 @@
+.w-section.overlay-backing
+  .w-container
+    .w-clearfix.modal-window
+      .modal-title-2
+        | Copied to Clipboard
+        a.close-modal data-ix="close-login-modal" href="#"  +
+
+.w-section.w-container
+  .w-clearfix.holding-div
+    .create-campaign-div
+      .code-snippet-div
+        .form-label.codesnip Place this code snippet on your HOME page
+        .code-snippet-backing
+          div
+            =  "<script type='text/javascript' async src='#{(root_url + "salescamp_store.js").split(':', 2)[1]}'></script>"
+        a.w-button.copy-code-btn href="#" data-clipboard-text="<script type='text/javascript' async src='#{(root_url + "salescamp_store.js").split(':', 2)[1]}'></script>" Copy Code Snippet
+
+      br/
+      br/
+      .code-snippet-div
+        .form-label.codesnip Place this code snippet on any pages you'd like the referral campaign to be visible
+        .code-snippet-backing
+          div
+            =  "<script type='text/javascript' data-salescamp-campaign='#{@campaign.id}:#{@campaign.type_i}' data-salescamp-campaign-color='#{@campaign.color}' async src='#{(root_url + "salescamp.js").split(':', 2)[1]}'></script>"
+        a.w-button.copy-code-btn href="#" data-clipboard-text="<script type='text/javascript' data-salescamp-campaign='#{@campaign.id}:#{@campaign.type_i}' data-salescamp-campaign-color='#{@campaign.color}' async src='#{(root_url + "salescamp.js").split(':', 2)[1]}'></script>" Copy Code Snippet
+
+    = link_to "Proceed to campaign reporting", campaign_path(@campaign), class: 'w-button next-step-button'
+  .img-surround.faq-area
+    .w-row
+      .w-col.w-col-4.w-col-stack.tablet-column-faq
+        .integration-faq How do I integrate my code snippet?
+        .description-preview-text.step 1. Place your code snippet in between the &lt;head&gt;&lt;/head&gt; &nbsp;tags of the page that you'd like the overlay to appear on.
+        .description-preview-text.step 2. Once you've added the code snippet, your campaign is integrated. Refresh and visit the pages where you added the code snippet to verify.
+        .description-preview-text.step
+          | 3. If you change your campaign's colour, you must re-insert your code snippet (removing the old one).
+          a.terms-link href="contact-us"  Contact us for support
+      .w-col.w-col-4.w-col-stack.tablet-column-faq
+        .integration-faq How long does it take?
+        .description-preview-text. It should take no longer than 5 minutes to integrate your code snippet. Make sure you integrate the code snippet onto each individual page where you'd like the referral campaign to appear. For example:
+        .description-preview-text. You could integrate your code snippet into any inner pages (e.g. dashboard, welcome page etc. - pages after a user has signed up), to track which of your users are referring signups (rather than just website visitors). Alternatively, you could have the campaign on your home page, but this will only track users referral to the home page.
+      .w-col.w-col-4.w-col-stack
+        .integration-faq Can I integrate with all websites? 
+        .description-preview-text. You should be able to integrate your code snippet with any website that allows you to add code into the &lt;head&gt;&lt;/head&gt; tags. Our code snippet works with Wordpress, Shopify, Webflow etc.
+javascript:
+  var clipboard = new Clipboard('.copy-code-btn');
+  clipboard.on('success', function(e) {
+    $('.overlay-backing').css("display","block");
+  });

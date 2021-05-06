@@ -1,0 +1,56 @@
+== content_for :title
+  | Contact Us
+  
+== content_for :titleaux
+  | We'll try and get back to you within a few hours. In the meantime, please <a href="frequently-asked-questions" class="contact-link">read our FAQ</a>.
+
+.contact-section
+  .form-backing-div
+    .form-wrapper.w-form
+      form#email-form.w-clearfix action="/submit-contact-form" method="post" data-name=("Email Form") name="email-form" 
+        = hidden_field_tag :authenticity_token, form_authenticity_token
+        label.form-label for="name"  Your Name
+        input#name.form-style.w-input data-name="Name" maxlength="256" name="name" placeholder=("Enter your name") required="required" type="text" /
+        label.form-label for="email"  Your Email
+        input#email.form-style.w-input data-name="Email" maxlength="256" name="email" placeholder=("Enter your email address") required="required" type="email" /
+        label.form-label for="Message-body"  Message
+        textarea#Message-body.form-style.message-body.w-input data-name=("Message body") maxlength="5000" name="message_body" placeholder=("Write your message here") required="required" 
+        input.send-message-button.w-button data-wait="Sending..." type="submit" value=("Send Message") wait="Sending..." /
+      .w-form-done
+        p Thank you! Your submission has been received!
+      .w-form-fail
+        p Oops! Something went wrong while submitting the form
+
+  .contact-page.faq-section-div
+    h3.faq.section-header-terms Frequently Asked Questions
+    .row-style.w-row
+      .w-col.w-col-4
+        h5.faq-title How do I create a campaign?
+        p.faq-para To create a campaign, you need to enter some basic information such as your website URL, campaign name, reward titles and your campaign colour.
+      .w-col.w-col-4
+        h5.faq-title Is it free?
+        p.faq-para We offer a 7 day free trial, and then charge for usage after the trial expires.
+      .w-col.w-col-4
+        h5.faq-title How do I increase the effectiveness of my campaign?
+        p.faq-para We recommend that you share your campaign across your social profiles and anywhere you can. If you have 0 traffic, a referral campaign wont help, but we CAN help if you are driving traffic and would like to experience the snowball effect.
+    .row-style.w-row
+      .w-col.w-col-4
+        h5.faq-title How do I integrate my campaign?
+        p.faq-para All you need to do is copy and paste the code snippet inside the &lt;head&gt; &lt;/head&gt; tags on your website. Insert the code on the pages where you'd like the referral overlay to appear (e.g. on a 'welcome' page and a dashboard area).
+      .w-col.w-col-4
+        h5.faq-title How do I track my campaign?
+        p.faq-para We provide you with a custom dashboard that allows you to see all users, their rewards, their # of referrals and more. You can download the email addresses of users who have joined your campaign in order to add them to your list/gift them their rewards.
+      .w-col.w-col-4
+        h5.faq-title How do I fulfil rewards once they have been reached?
+        p.faq-para You are able to fulfil rewards in your dashboard area -- view the pending rewards, and then reach out to the recipient or apply the reward on your website.
+    .row-style.w-row
+      .w-col.w-col-4
+        h5.faq-title How does billing work?
+        p.faq-para Salescamp is a subscription product, so we'll bill you monthly on the same day of every month. You're free to cancel your account at any point and you're not locked in to any contracts.
+      .w-col.w-col-4
+        h5.faq-title What's your payment processor?
+        p.faq-para We use Stripe to handle all payments.
+      .w-col.w-col-4
+        h5.faq-title Can I downgrade my plan?
+        p.faq-para Yes, if you are under the threshold for the plan you'd like to downgrade to, you can downgrade it via your account dashboard.
+

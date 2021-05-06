@@ -1,0 +1,8 @@
+p
+  li
+    = milestone.caption
+  li
+    = milestone.referral_count
+  li
+    = link_to campaign_milestone_path(@campaign, milestone), method: :delete, data: { confirm: "Are you sure?" }, remote: true do
+      span asd

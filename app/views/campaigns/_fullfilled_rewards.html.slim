@@ -1,0 +1,16 @@
+div.fullfilled_users_list
+  table.fullfilled-table
+    thead
+      tr
+        th EMAIL
+        th TOTAL REFERRALS
+        th FULLFILLED REWARDS
+    tbody
+      -@fullfilled_rewards.each do |user|
+        tr class = "fullfilled_users_list_#{user.id}"
+          td =user.email
+          td =user.referrals
+          td
+            -@campaign.milestones.each_with_index do |campaign,index|
+              -if index < user.fullfilled
+                span = "#{campaign.caption} |"

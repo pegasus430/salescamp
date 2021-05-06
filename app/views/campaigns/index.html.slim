@@ -1,0 +1,92 @@
+== content_for :title do
+  | You have #{@campaigns.size} #{"campaign".pluralize(@campaigns.size)}
+
+.w-section.campaign-boxes-section
+  -last = @campaigns.size / 3
+  -@campaigns.each_slice(3).with_index do |groupedcampaign, i|
+    .w-row.campaign-row
+      -groupedcampaign.each do |campaign|
+        .w-col.w-col-4.column-boxes
+          .campaign-box
+            div
+              =link_to (campaign.name), campaign_path(campaign), class: 'campaign-name'
+            div
+              .url =campaign.url
+            .w-row.edit-pause-row
+              .w-col.w-col-8.w-col-small-6.w-clearfix.column-div
+                = link_to "Edit", edit_campaign_path(campaign), class: 'w-button campaign-button edit'
+              /.w-col.w-col-6.w-col-small-6.w-clearfix.column-div
+              /  a.w-button.campaign-button.pause href="#"  Pause
+            .stats-div
+              .w-row
+                .w-col.w-col-4.w-col-small-4
+                  .referral-text
+                    span.referral-number = campaign.referred_users.map{ |user| user.referrals}.sum
+                    br
+                    | Total Referrals
+                .w-col.w-col-4.w-col-small-4
+                  .referral-text
+                    span.referral-number =campaign.referred_users.count
+                    br
+                    | List Size
+                .w-col.w-col-4.w-col-small-4
+                  .referral-text
+                    span.referral-number 
+                      = campaign.referred_users.where(fullfilled: false).select{|u| u.is_peding_reward(campaign)}.count
+                    br
+                    | Pending Reward
+      -if @campaigns.size % 3 != 0 and i == last
+        = render 'create_campaign_btn'
+  -if @campaigns.size % 3 == 0
+    .w-row.campaign-row
+      = render 'create_campaign_btn'
+  .list-tooltip-div.campaign-page
+    div
+      | This is the total number of users who have joined your referral campaign(s). It's not the number of referrals.
+      br
+      | "Think" of this number as your promoters, sharing their referral links and growing your business.
+  .tooltip-div.camp-styles
+    div
+      | When someone signups up using a referral link from your campaign, you'll gain another
+      br
+      | 'referral'. If you hit the limit, your account will automatically upgrade to the next tier.
+.w-section.all-campaign-stats
+  .page-title-text.all-stats Account information
+  .w-row.info-box-row
+    .w-col.w-col-4.w-col-small-6
+      .info-div
+        div
+          span.number-style
+            = @campaigns_total_referrals
+            br xmlns="http://www.w3.org/1999/xhtml" /
+          | Total Referrals
+          a.tooltip-hover data-ix="display-referral-tooltip" href="#"  ?
+    .w-col.w-col-4.w-col-small-6
+      .info-div
+        div
+          span.number-style.colour2
+            = @campaigns_joined_campaign_count
+            br xmlns="http://www.w3.org/1999/xhtml" /
+          | Joined Campaign
+          a.tooltip-hover data-ix="display-list-tooltip" href="#"  ?
+    .w-col.w-col-4.w-col-small-6
+      .info-div
+        div
+          span.number-style.colour3
+            = @campaigns_pending_rewards
+            br xmlns="http://www.w3.org/1999/xhtml" /
+          | Pending Rewards
+    /.w-col.w-col-3.w-col-small-6
+    /  .info-div
+    /    div
+    /      span.number-style.colour4
+    /        = @campaigns_referrals_today
+    /        br xmlns="http://www.w3.org/1999/xhtml" /
+    /      | Referrals Today
+
+
+
+
+
+script async="" data-salescamp-campaign="16:1" data-salescamp-campaign-color="#1a67d4" src="//salescamp.io/salescamp.js" type="text/javascript" 
+

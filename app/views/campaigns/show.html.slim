@@ -1,0 +1,72 @@
+== content_for :title do
+  = @campaign.name
+
+== content_for :titleaux do
+  = link_to edit_campaign_path(@campaign), class: 'edit-link'
+    | Edit
+.w-section.campaign-reporting
+  .w-clearfix.get-code-snippet-box
+    = link_to "Get code snippet for this campaign", code_snippet_campaign_path(@campaign), class: 'pending-rewards-link code-snippet'
+  .list-tooltip-div
+    div
+      | This is the total number of users who have joined your referral campaign. It's not the number of referrals.
+  .tooltip-div
+    div
+      | You gain a referral each time someone signs "up" using a referral link for this campaign.
+  .w-row.info-box-row
+    .w-col.w-col-4
+      .info-div
+        div
+          span.number-style
+            = @total_referrals
+          | Total Referrals
+          a.tooltip-hover data-ix="display-referral-tooltip" href="#"  ?
+    /.w-col.w-col-3
+    /  .info-div
+    /    div
+    /      span.number-style.colour2
+    /        = @referrals_today
+    /       | Referrals Today
+    .w-col.w-col-4
+      .info-div
+        div
+          span.number-style.colour3> 
+            = @pending_rewards
+          | Pending Rewards
+          a.view-link data-ix="display-pending-rewards" href="#"  (view)
+    .w-col.w-col-4
+      .info-div
+        div
+          span.number-style.colour
+            = @joined_campaign_count
+          | Joined Campaign
+          a.tooltip-hover data-ix="display-list-tooltip" href="#"  ?
+  .w-clearfix.table-div-upper
+    .campaign-info Campaign Information
+    .fulfilled-title Fulfilled Rewards (#{@fullfilled_rewards.count})
+    .pending-rewards-header Pending Rewards (#{@pending_rewards})
+    a.w-button.download-list href="#{campaign_path(@campaign, format: "csv")}"  Download CSV List
+    .selectors
+      a.pending-rewards-link.campaign_info data-ix="show-campaign-information" href="#"
+        | Campaign information
+        | &nbsp; | &nbsp;
+      a.pending-rewards-link.pending_users data-ix="display-pending-rewards" href="#"
+        | Pending rewards (#{@pending_rewards})
+        | &nbsp;| &nbsp;
+      a.pending-rewards-link.fullfilled_users_info data-ix="display-fulfilled-rewards" href="#"
+        | Fulfilled rewards (#{@fullfilled_rewards.count})
+
+  / = smart_listing_render :referred_users
+  = render 'campaign_information'
+  = render 'pending'
+  = render 'fullfilled_rewards'
+
+  .w-clearfix.previousnext
+    / a.w-button.next-20 href="#"  Next 25
+    /= link_to "Delete", '#', id: 'destroy-multiple',
+      class: 'w-button action-button delete'
+    / a.w-button.action-button.fulfilled#fulfilled-multiple href="#"  Mark reward fulfilled
+    / a.w-button.action-button.download-user-csv href="#{campaign_path(@campaign, format: "csv")}"  Download user CSV
+    / a.w-button.next-20.previous href="#"  Previous 25
+
+

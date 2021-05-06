@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hello!</h1>
+    <p>
+      You have successfully joined the referral campaign for <%= @campaign.url%>,
+      your email is: <%= @referred_user.email %>.<br>
+    </p>
+    <p>
+      To go to the site, just follow this link: <%= @campaign.url%>.
+    </p>
+    <p>Thanks for joining!</p>
+  </body>
+</html>

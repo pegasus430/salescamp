@@ -1,0 +1,13 @@
+<div class='nested-fields w-clearfix'>
+  <% if f.object.errors['referral_count'][0] %>
+      <div class="alert">
+        <%= "Milestone #{f.object.errors['referral_count'][0]}" %>
+      </div>
+  <% end %>
+  <%= f.text_field :caption , class: 'w-input form-style reward', placeholder: "e.g. Free membership, physical goods, priority queue etc." %>
+
+  <%= f.select :referral_count, options_for_select((1..500).step(1).to_a, :selected => f.object.referral_count),{prompt: 'Referrals required'}, :class => 'w-select dropdown-referral-number', "data-name" => "referrals required" %>
+  <%= link_to_remove_association f, { class: 'remove-referral' } do %>
+    <i class="fa fa-times-circle-o" aria-hidden="true"></i>
+  <% end %>
+</div>

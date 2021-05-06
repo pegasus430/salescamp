@@ -1,0 +1,20 @@
+.email-div.email-admin
+  .email-table= company.email
+.email-div.plan
+  -if company.subscription.nil?
+    div Free
+  -else
+    div= company.subscription.plan_id.humanize
+.email-div.campaigns
+  div= company.campaigns.count
+.email-div.referred-users
+  div= company.campaigns.map{|c| c.referred_users.count}.sum
+.email-div.original-referrers
+  div= company.campaigns.map{|c| c.referred_users.where(referred_user_id: nil).count}.sum
+.email-div.total-spent
+  div $#{(company.total_spent/100)}.#{company.total_spent % 100}
+.email-div.total-payments
+  div= company.payment_count
+.email-div.password-reset
+  div= button_to('Reset password', admin_reset_pass_path({user_id: company.id}), remote: true, method: 'reset_password')
+

@@ -1,0 +1,20 @@
+.w-section.overlay-backing
+  .w-container
+    .w-clearfix.modal-window
+      a.close-modal data-ix="close-login-modal" href="#"  +
+      .modal-title Login
+      .modal-subhead
+        | Not a member?&nbsp;
+        a.register-link data-ix="switch-modal-to-register" href="#" Register here
+      .w-form.overlay-form-wrapper
+        = form_for(:user, :url => session_path(:user)) do |f|
+          = f.label :email, class: 'form-label'
+          = f.text_field :email, class: 'w-input form-style'
+          = f.label :password, class: 'form-label'
+          = f.password_field :password, class: 'w-input form-style'
+          .w-checkbox.w-clearfix
+            = f.check_box :remember_me, class: 'w-checkbox-input w-clearfix checkbox-style'
+            = f.label :remember_me, class: 'w-form-label remember-me-text'
+          = f.submit 'Login', class: 'w-button login-btn'
+      .modal-subhead
+        a.register-link href="/users/password/new" Forgot your password?

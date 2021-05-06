@@ -1,0 +1,9 @@
+<%@user_ids.each do |id|%>
+	$('[data-id="<%=id%>"]').remove();
+	$('.pending_reward_<%=id%>').remove();
+<%end%>
+
+$('.fullfilled-table tbody').append('<%= j(render 'fullfilled_rewards_partial') %>');
+$('.fullfilled_users_info').html('| Fulfilled rewards (<%= @fullfilled_rewards %>)');
+$('.fulfilled-title').html('Fulfilled rewards (<%= @fullfilled_rewards%>)');
+$('.pending-rewards-link.pending_users').html('Pending rewards (<%= @pending_rewards_count %>) ');

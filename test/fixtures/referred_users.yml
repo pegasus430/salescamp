@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  campaign_id: 
+  referrer: 1
+  token: MyString
+
+two:
+  campaign_id: 
+  referrer: 1
+  token: MyString

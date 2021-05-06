@@ -1,0 +1,129 @@
+// Place all the styles related to the User controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.login-div {
+  background-color: white;
+  box-shadow: 0 1px 3px 0 rgba(50, 75, 99, .15);
+  border-radius: 2px;
+}
+
+.text-table-header.email-admin {
+  width: 17%;
+  padding-left: 0px;
+  float: left;
+  color: #828f9e;
+  text-align: center;
+}
+
+.text-table-header.plan {
+  width: 9%;
+  padding-left: 0px;
+  float: left;
+  color: #828f9e;
+  text-align: center;
+}
+
+.text-table-header.campaigns {
+  width: 11%;
+  padding-left: 0px;
+  float: left;
+  color: #828f9e;
+  text-align: center;
+}
+
+.text-table-header.referred-users {
+  width: 13%;
+  padding-left: 0px;
+  float: left;
+  color: #828f9e;
+  text-align: center;
+}
+
+.text-table-header.original-referrers {
+  width: 13%;
+  padding-left: 0px;
+  float: left;
+  color: #828f9e;
+  text-align: center;
+}
+
+.text-table-header.total-spent {
+  width: 13%;
+  padding-left: 0px;
+  float: left;
+  color: #828f9e;
+  text-align: center;
+}
+
+.text-table-header.total-payments {
+  width: 12%;
+  padding-left: 0px;
+  float: left;
+  color: #828f9e;
+  text-align: center;
+}
+
+.text-table-header.password-reset {
+  width: 12%;
+  padding-left: 0px;
+  float: left;
+  color: #828f9e;
+  text-align: center;
+}
+
+
+.email-div.email-admin {
+  width: 17%;
+  padding-left: 0px;
+  color: #647688;
+  text-align: center;
+}
+
+.email-div.plan {
+  width: 9%;
+  padding-left: 0px;
+  color: #647688;
+  text-align: center;
+}
+
+.email-div.campaigns {
+  width: 11%;
+  padding-left: 0px;
+  color: #647688;
+  text-align: center;
+}
+
+.email-div.referred-users {
+  width: 13%;
+  padding-left: 0px;
+  color: #647688;
+  text-align: center;
+}
+
+.email-div.original-referrers {
+  width: 13%;
+  padding-left: 0px;
+  color: #647688;
+  text-align: center;
+}
+
+.email-div.total-spent {
+  width: 13%;
+  padding-left: 0px;
+  color: #647688;
+  text-align: center;
+}
+
+.email-div.total-payments {
+  width: 12%;
+  padding-left: 0px;
+  color: #647688;
+  text-align: center;
+}
+
+.email-div.password-reset {
+  width: 12%;
+  padding-left: 0px;
+  color: #647688;
+  text-align: center;
+}

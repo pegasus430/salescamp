@@ -1,0 +1,74 @@
+.referral-div-window
+  h1.campaign-title =@referred_user.campaign.title
+  .campaign-subtitle =@referred_user.campaign.subtitle
+  .referral-count-div
+    .referral-count
+      | You currently have&nbsp;
+      span.referral-number-total.campaign-color =@referred_user.referrals
+      | &nbsp;referrals
+  /.line-div
+  .w-clearfix.rewards-div
+    ul.progress-indicator
+
+      li.is-complete data-step="0" 
+        span
+
+      - if params[:commit].nil?
+        - @referred_user.campaign.milestones.each_with_index do |milestone,index|
+          li class=(@referred_user.referred_count > milestone.referral_count ? 'is-complete' : '') data-step="#{milestone.referral_count}" 
+            span
+              = milestone.caption
+          
+
+    /.reward-div.reward-start-div
+    /  .referral-target.reached 
+    /    | 0
+    /  .reward-text
+    /    | 
+
+    /- if params[:commit].nil?
+    /  - @referred_user.campaign.milestones.each_with_index do |milestone,index|
+    /    .reward-div class=('w-clearfix' if index != 0) id=("milestone_view_#{milestone.id}")
+    /      .referral-target class=(@referred_user.referred_count > milestone.referral_count ? 'campaign-color-bg reached' : 'not-reached')
+    /        = milestone.referral_count
+    /      .reward-text
+    /        = milestone.caption
+
+  .device-message Log in to a larger device to view the referral rewards!
+  .w-form.overlay-form
+    - if @referred_user.new_record?
+      = form_for @referred_user, url: { action: 'create' }, remote: true, html: { class: 'w-clearfix' } do |f|
+        = token_tag nil
+        = f.hidden_field :token, value: params[:salescamp]
+        = f.text_field :email, class: 'w-input reward-form', placeholder: 'Enter your email address', required: 'required', type: 'email', remote: true
+        = f.button :submit, class: 'w-button copy-link-btn _2 campaign-color-bg np_generate_link', value: 'Generate Link'
+          | Generate Link
+      .w-form-fail style=("display: #{(not @referred_user.email.blank? and not @result) ? 'block' : 'none'}")
+        | Oops! Invalid email! or Too many Requests
+    - else
+      = render 'referred_users/link', referred_user: @referred_user, result: @result
+
+  .powered-by-text
+    a.powered-by-link href="http://www.salescamp.io" target="_blank"  Powered by Salescamp
+css:
+  .reached{
+    margin-right: 37%;
+    margin-left: 37%;
+    padding-right: 9px;
+    padding-left: 9px;
+    float: left;
+    background-color: #{@referred_user.campaign.color};
+  }
+  .campaign-color-bg{
+    background-color: #{@referred_user.campaign.color}
+  }
+  .referral-number-total{
+    color: #{@referred_user.campaign.color}
+  }
+  .progress-indicator > li.is-complete {
+      color: #{@referred_user.campaign.color};
+  }
+  .progress-indicator > li.is-complete::before {
+    color: #fff;
+    background-color: #{@referred_user.campaign.color};
+  }

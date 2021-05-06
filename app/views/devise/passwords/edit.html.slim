@@ -1,0 +1,20 @@
+.w-container
+  .w-clearfix.modal-window
+    .modal-title
+      | Change your password
+    .w-form.signup-form-wrapper
+      = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
+        = devise_error_messages!
+        = f.hidden_field :reset_password_token
+        = f.label :password, "New password", class: 'form-label'
+        = f.password_field :password, autofocus: true, autocomplete: "off", class: 'w-input form-style'
+        = f.label :password_confirmation, "Confirm new password", class: 'form-label'
+        = f.password_field :password_confirmation, autocomplete: "off", class: 'w-input form-style'
+        = f.submit "Change my password", class: 'w-button login-btn'
+
+    .modal-subhead
+        a.register-link data-ix="switch-modal-to-register" href="#" Register here
+
+        | &nbsp; &nbsp; &nbsp; &nbsp; 
+
+        a.register-link data-ix="switch-modal-to-login" href="#"  Login here

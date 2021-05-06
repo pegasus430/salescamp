@@ -1,0 +1,21 @@
+.w-section.w-clearfix.referral-modal style='display:block'
+  a#close-modal.w-inline-block.close-referral-overlay href=('#')
+    | +
+  .w-container.referral-container.referral-container--loading
+    .referral-count-div
+      .referral-count.referral-count--loading
+        | Loading...
+
+javascript:
+  window.onload = function () {
+    function closeModal() {
+      var msg = {
+        type: "closeModal"
+      }
+      top.postMessage(JSON.stringify(msg), "*");
+    }
+
+    document.getElementById("close-modal").onclick = (function() {
+      closeModal();
+    })
+  };
